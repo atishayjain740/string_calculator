@@ -15,4 +15,8 @@ void main() {
   test('Single number returns the number itself', () {
     expect(calculator.add("7"), equals(7));
   });
+
+  test('Two numbers separated by a comma return their sum', () {
+    expect(calculator.add("1,2"), equals(3));
+  });
 }
