@@ -19,4 +19,8 @@ void main() {
   test('Two numbers separated by a comma return their sum', () {
     expect(calculator.add("1,2"), equals(3));
   });
+
+  test('Handles an unknown amount of numbers', () {
+    expect(calculator.add("1,2,3,4,5"), equals(15));
+  });
 }
