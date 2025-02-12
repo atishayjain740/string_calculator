@@ -43,4 +43,12 @@ void main() {
   test('Supports delimiters of any length', () {
     expect(calculator.add("//[***]\n1***2***3"), equals(6));
   });
+
+  test('Supports delimiters of any length', () {
+    expect(calculator.add("//[*][%]\n1*2%3"), equals(6));
+  });
+
+  test('Supports delimiters of any length', () {
+    expect(calculator.add("//[**][%%]\n1**2%%3"), equals(6));
+  });
 }
