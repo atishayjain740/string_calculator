@@ -8,17 +8,24 @@ class StringCalculator {
 
     // Check if the input starts with "//" (indicating a custom delimiter)
     if (numbers.startsWith("//")) {
-      // Split the input into two parts: the delimiter definition and the numbers
-      final parts = numbers.split('\n');
+      final delimiterMatch =
+          RegExp(r"//(\[.*?\])+\n|//(.)\n").matchAsPrefix(numbers);
+      if (delimiterMatch != null) {
+        final delimiterSection = delimiterMatch.group(0)!;
+        numbers = numbers.substring(delimiterSection.length);
 
-      // removing the "//" prefix
-      String customDelimiter = parts[0].substring(2);
-
-      // Update the delimiter regex to use the custom delimiter
-      delimiterRegex = RegExp(RegExp.escape(customDelimiter));
-
-      // Update the numbers string to exclude the delimiter definition line
-      numbers = parts.sublist(1).join('\n');
+        if (delimiterMatch.group(1) != null) {
+          // Multi-character delimiters in [brackets]
+          final delimiters = RegExp(r"\[(.*?)\]")
+              .allMatches(delimiterSection)
+              .map((m) => RegExp.escape(m.group(1)!))
+              .join("|");
+          delimiterRegex = RegExp(delimiters);
+        } else if (delimiterMatch.group(2) != null) {
+          // Single-character delimiter
+          delimiterRegex = RegExp(RegExp.escape(delimiterMatch.group(2)!));
+        }
+      }
     }
 
     // Split the string into a list of strings based on the delimiter regex.
