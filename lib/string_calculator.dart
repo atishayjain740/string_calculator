@@ -43,6 +43,7 @@ class StringCalculator {
     // Calculate the sum using a loop
     int sum = 0;
     for (int num in numberList) {
+      if (num > 1000) continue; // Do not include numbers greater than 1000
       sum += num;
     }
 

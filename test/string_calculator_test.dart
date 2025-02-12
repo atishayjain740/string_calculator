@@ -35,4 +35,8 @@ void main() {
   test('Throws exception for negative numbers', () {
     expect(() => calculator.add("1,-2,3,-4"), throwsFormatException);
   });
+
+  test('Ignore numbers greater than 1000', () {
+    expect(calculator.add("2,1001"), equals(2));
+  });
 }
