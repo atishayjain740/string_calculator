@@ -11,4 +11,8 @@ void main() {
   test('Empty string returns 0', () {
     expect(calculator.add(""), equals(0));
   });
+
+  test('Single number returns the number itself', () {
+    expect(calculator.add("7"), equals(7));
+  });
 }
