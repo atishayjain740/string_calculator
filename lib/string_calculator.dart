@@ -27,6 +27,19 @@ class StringCalculator {
     // Convert it into a list of integers
     List<int> numberList = numberStrings.map((str) => int.parse(str)).toList();
 
+    // Finding the negative numbers
+    List<int> negatives = [];
+    for (int num in numberList) {
+      if (num < 0) {
+        negatives.add(num);
+      }
+    }
+
+    // If there is any negative number throw an exception
+    if (negatives.isNotEmpty) {
+      throw FormatException("Negatives not allowed: ${negatives.join(", ")}");
+    }
+
     // Calculate the sum using a loop
     int sum = 0;
     for (int num in numberList) {
