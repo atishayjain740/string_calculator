@@ -3,8 +3,8 @@ class StringCalculator {
     // For empty strings return 0
     if (numbers.isEmpty) return 0;
 
-    // Split the string into a list of strings based on comma
-    List<String> numberStrings = numbers.split(",");
+    // Split the string into a list of strings based on comma and new line
+    List<String> numberStrings = numbers.split(RegExp(r",|\n"));
 
     // Convert it into a list of integers
     List<int> numberList = numberStrings.map((str) => int.parse(str)).toList();
