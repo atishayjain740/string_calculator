@@ -32,6 +32,10 @@ void main() {
     expect(calculator.add("//;\n1;2"), equals(3));
   });
 
+  test('Supports custom * single-character delimiters', () {
+    expect(calculator.add("//*\n1*2"), equals(2));
+  });
+
   test('Throws exception for negative numbers', () {
     expect(() => calculator.add("1,-2,3,-4"), throwsFormatException);
   });

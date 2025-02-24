@@ -47,13 +47,31 @@ class StringCalculator {
       throw FormatException("Negatives not allowed: ${negatives.join(", ")}");
     }
 
-    // Calculate the sum using a loop
+    // Calculate the sum/product using a loop.
+    bool hasStar = delimiterRegex.pattern.contains('*');
+
+    return (hasStar) ? findProduct(numberList) : findSum(numberList);
+  }
+
+  int findSum(List numberList) {
     int sum = 0;
     for (int num in numberList) {
       if (num > 1000) continue; // Do not include numbers greater than 1000
+
       sum += num;
     }
 
     return sum;
+  }
+
+  int findProduct(List numberList) {
+    int product = 1;
+    for (int num in numberList) {
+      if (num > 1000) continue; // Do not include numbers greater than 1000
+
+      product *= num;
+    }
+
+    return product;
   }
 }
